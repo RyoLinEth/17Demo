@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import contractABI from './contractabi.json'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const contractAddress = "0x5b3b8a45B3E979FD338fa2923a0B708Aa29C6322";
+const contractAddress = "0x9859522E4c59aE2c1FBa57bEF417e9e5e013ade5";
 
 function App() {
   /*
@@ -28,7 +28,18 @@ function App() {
   const [ancestor, setAncestor] = useState(null);
   const [refLink, setRefLink] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [correctNetwork, setCorrectNetwork] = useState(null);
 
+
+  /*
+    ==========================================
+    ==========================================
+    
+      ***  Functions for All project   ***
+    
+    ==========================================
+    ==========================================
+  */
   const connectWalletHandler = async () => {
     if (window.ethereum) {
       window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -43,9 +54,9 @@ function App() {
 
   //設定預設地址 以及 個人邀請連結
   const accountChangeHandler = async (newAccount) => {
-
+    checkCorrectNetwork();
     setDefaultAccount(newAccount);
-    let tempReflink = `localhost:3000/invitedBy=${newAccount}`
+    let tempReflink = `https://17demo.pages.dev/invitedBy=${newAccount}`
     setRefLink(tempReflink);
 
     await updateEthers();
@@ -62,8 +73,41 @@ function App() {
     setContract(tempContract);
   }
 
+  const checkCorrectNetwork = async () => {
+    const { ethereum } = window
+    let chainId = await ethereum.request({ method: 'eth_chainId' })
+    console.log('Connected to chain:' + chainId)
+
+    const netWorkID = '0x61'
+
+    if (chainId !== netWorkID) {
+      setCorrectNetwork(false)
+      alert("Please connect to BSC Testnet")
+    } else {
+      setCorrectNetwork(true)
+    }
+  }
+
+
+  /*
+    ==========================================
+    ==========================================
+    
+      ***  Functions for this project   ***
+    
+    ==========================================
+    ==========================================
+  */
   const makePayment = async () => {
-    const options = { value: ethers.utils.parseEther("0.000105") }
+    
+    if (correctNetwork === false) {
+      alert("You cannot make payment before you change to the OKC Mainnet")
+      return;
+    }
+
+    await getRef()
+
+    const options = { value: ethers.utils.parseEther("0.105") }
     console.log(refAccount);
     let result = await contract.makeIDO(refAccount, options)
     console.log(result);
@@ -86,8 +130,6 @@ function App() {
       refAccount = defaultIDOAddress
     }
   }
-
-  getRef()
 
   const alertCopied = () => {
     alert(`Your invitation link : ${refLink} has been copied`)
