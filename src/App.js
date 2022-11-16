@@ -138,7 +138,7 @@ function App() {
     let tempWhiteReward = await contract.whiteTimes(defaultAccount) * 0.3
     setWhiteReward(tempWhiteReward);
     let tempAutoInvestReward = await contract.autoInvestTimes(defaultAccount) * 0.95
-    setDirectReward(tempAutoInvestReward);
+    setAutoInvestReward(tempAutoInvestReward);
 
     let web3Number = await contract.viewJoinIndexForCertainAddress(defaultAccount)
     if (web3Number.length > 0) {
