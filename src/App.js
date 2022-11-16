@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import contractABI from './contractabi.json'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const contractAddress = "0x9859522E4c59aE2c1FBa57bEF417e9e5e013ade5";
+const contractAddress = "0xbEd5BB255eea408f859a89B02b9E3E17D01F0318";
 
 function App() {
   /*
