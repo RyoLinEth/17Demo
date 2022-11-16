@@ -69,8 +69,8 @@ function App() {
   const accountChangeHandler = async (newAccount) => {
     checkCorrectNetwork();
     setDefaultAccount(newAccount);
-    // let tempReflink = `https://17demo.pages.dev/invitedBy=${newAccount}`
-    let tempReflink = `localhost:3001/invitedBy=${newAccount}`
+    let tempReflink = `https://17demo.pages.dev/invitedBy=${newAccount}`
+    // let tempReflink = `localhost:3001/invitedBy=${newAccount}`
     setRefLink(tempReflink);
 
     await updateEthers();
