@@ -1,5 +1,5 @@
-.App-header {
-  background-color: #282c34;
+.App {
+  background-color: #13171C;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,16 +11,80 @@
 
 .RewardTable,
 .Web3Table,
-.StatusTable {
-  margin-top: 10vh;
+.StatusTable,
+.ButtonDiv {
+  background-color: #3A3B3D;
+  opacity: 0.9;
+  margin-bottom: 3vh;
   width: 80vw;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-radius: 10px;
   border: 1px solid white;
 }
 
-.headTop {
+button {
+  background-color: transparent;
+  color: white;
+  height: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  border: none;
+  border: 1px solid #FFE347;
+}
+
+#PaymentImage {
+  width: 80vw;
+  cursor: pointer;
+}
+.TableTop {
   border-bottom: 1px solid white;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5vh;
+}
+
+#Title {
+  color: #FFE347;
+  flex: 1;
+}
+
+#ConnectButton {
+  flex: 1;
+  position: absolute;
+  margin-top: 30px;
+  right : 5vw;
+  background-color: transparent;
+  color: white;
+  height: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+#TitleImage {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left : 5vw;
+  flex: 1;
+}
+
+.starlinkImage {
+  border-top-left-radius: 10px;
+  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+#copyLinkBtn{
+  width: 100%;
+}
+
+thead {
+  font-size:larger;
+}
+
+tbody {
+  font-size: medium;
 }
