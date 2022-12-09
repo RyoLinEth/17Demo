@@ -9,7 +9,7 @@ import { ethers } from 'ethers'
 import contractABI from './contractabi.json'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const contractAddress = "0x356C885249B9b44846E5584C43A8cE5D33Ba2553";
+const contractAddress = "0x165b7624B6b1da3aEc274Cfe427aB25F5C5EF429";
 
 function App() {
   /*
@@ -23,7 +23,7 @@ function App() {
     defaultIDOAddress : 預設的IDO地址
   */
 
-  const defaultIDOAddress = "0x60e21c1C75E60a966734B4Dd0FE1D3ac7484F00A";
+  const defaultIDOAddress = "0x0301Ce860A96A2134962491B55A6Bfa430481142";
   const [errorMessage, setErrorMessage] = useState(null);
   const [defaultAccount, setDefaultAccount] = useState(null)
   const [connectButtonText, setConnectButtonText] = useState('连接钱包')
@@ -110,7 +110,7 @@ function App() {
     let chainId = await ethereum.request({ method: 'eth_chainId' })
     console.log('Connected to chain:' + chainId)
 
-    const netWorkID = '0x61'
+    const netWorkID = '0x2b6f'
 
     if (chainId !== netWorkID) {
       setCorrectNetwork(false)
@@ -139,13 +139,15 @@ function App() {
 
     await getRef()
 
-    const options = { value: ethers.utils.parseEther("0.105") }
+    const options = { value: ethers.utils.parseEther("1.05") }
     console.log(refAccount);
     let result = await contract.makeIDO(refAccount, options)
     console.log(result);
     if (result) {
       alert("付款正在提交")
     }
+
+    setTimeout(getReward(),30000)
   }
 
   const getReward = async () => {
@@ -304,9 +306,10 @@ function App() {
             </tr>
           </tbody>
         </table>
-        {/* <button onClick={seeFather} > See Father</button>
+        測試檢測用 測試完刪除
+        <button onClick={seeFather} > See Father</button>
         <h5>你爹  ：{father}</h5>
-        <h5>你祖先：{ancestor}</h5> */}
+        <h5>你祖先：{ancestor}</h5>
       </div>
     </div>
   );
